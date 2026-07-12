@@ -1,0 +1,9 @@
+# Override with a healthcheck that never passes
+services:
+  web:
+    healthcheck:
+      test: exit 1
+      interval: 1s
+      timeout: 2s
+      retries: 1
+      start_period: 0s
