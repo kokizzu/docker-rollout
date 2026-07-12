@@ -93,10 +93,8 @@ assert_none_running() {
   echo "$(container_ids)" | grep -q "$old_id" || fail "old container was removed during rollback"
 }
 
+# https://github.com/wowu/docker-rollout/issues/20
 @test "replaces an exited old container instead of restarting it" {
-  # https://github.com/wowu/docker-rollout/issues/20
-  skip "known bug: exited old container is restarted, not replaced"
-
   docker compose -f "$BASE" up --detach --scale web=1 web
   local old_id
   old_id="$(container_ids)"
